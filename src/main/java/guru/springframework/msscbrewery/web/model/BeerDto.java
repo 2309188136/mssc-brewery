@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 /**
@@ -19,5 +21,10 @@ public class BeerDto {
     private UUID id;
     private String beerName;
     private String beerStyle;
-    private Long upc;
+    private OffsetDateTime createDate; //based on UTC date
+    private OffsetDateTime lastModifiedDate;
+    private BeerStyleEnum beerStyleEnum;
+    private Long upc; //universal product code
+    private BigDecimal price;
+    private Integer quantityAtHand;
 }
