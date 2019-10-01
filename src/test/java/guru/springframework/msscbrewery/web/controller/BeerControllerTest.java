@@ -5,6 +5,7 @@ import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
 
 
+import guru.springframework.msscbrewery.web.model.BeerStyleEnum;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.hamcrest.core.Is.is;
@@ -46,11 +48,8 @@ public class BeerControllerTest {
     //@Before
     @BeforeEach
     public void setUp() throws Exception {
-        validBeer = BeerDto.builder().id(UUID.randomUUID())
-                .beerName("Beer1")
-                .beerStyle("PALE_ALE")
-                .upc(123456789012L)
-                .build();
+        validBeer = BeerDto.builder().id(UUID.randomUUID()).beerName("Beer1")
+              .beerStyleEnum(BeerStyleEnum.PALE_ALE).upc(123456789012L).price(new BigDecimal(5.04)).build();
     }
 
     @Test

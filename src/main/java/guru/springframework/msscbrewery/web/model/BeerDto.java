@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
@@ -20,15 +21,24 @@ public class BeerDto {
 
     @Null //disallow user set id
     private UUID id;
+
+    @Null
+    private Integer version;
     @NotBlank
     private String beerName;
-    @NotBlank
-    private String beerStyle;
+
+    @Null
     private OffsetDateTime createDate; //based on UTC date
+    @Null
     private OffsetDateTime lastModifiedDate;
+    @NotNull
     private BeerStyleEnum beerStyleEnum;
     @Positive
+    @NotNull
     private Long upc; //universal product code
+
+    @Positive
+    @NotNull
     private BigDecimal price;
     private Integer quantityAtHand;
 }
