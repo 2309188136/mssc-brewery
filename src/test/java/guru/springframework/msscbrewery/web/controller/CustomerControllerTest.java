@@ -14,23 +14,23 @@ import org.junit.jupiter.api.Test;
 //TODO implement CustomerControllerTest
 public class CustomerControllerTest {
 
-    @BeforeAll
-    public void setUp() throws Exception {
-    }
-
-    @Test
-    public void getCustomer() {
-    }
-
-    @Test
-    public void handlePost() {
-    }
-
-    @Test
-    public void handleUpdate() {
-    }
-
-    @Test
-    public void deleteById() {
-    }
+//    @BeforeAll
+//    public void setUp() throws Exception {
+//    }
+//
+//    @Test
+//    public void getCustomer() {
+//    }
+//
+//    @Test
+//    public void handlePost() {
+//    }
+//
+//    @Test
+//    public void handleUpdate() {
+//    }
+//
+//    @Test
+//    public void deleteById() {
+//    }
 }

@@ -1,5 +1,6 @@
 package guru.springframework.msscbrewery.domain;
 
+import guru.springframework.msscbrewery.web.model.BeerStyleEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
+//@RequiredArgsConstructor
 public class Beer {
 
     @Id
@@ -37,14 +40,20 @@ public class Beer {
     private Timestamp lastModifiedDate;
 
     private String beerName;
-    private String beerStyle;
+
+    @Enumerated(EnumType.STRING)
+    private BeerStyleEnum beerStyleEnum;
+//    private String beerStyle;
+
 
     @Column(unique = true)
     private Long upc;
 
     private BigDecimal price;
 
+
     private Integer minOnHand; //minimum quantity on hand
+
     private Integer quantityToBrew;
 
 

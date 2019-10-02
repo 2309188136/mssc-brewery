@@ -2,6 +2,7 @@ package guru.springframework.msscbrewery.web.controller;
 
 import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,13 +23,14 @@ import java.util.UUID;
 @Validated //annotation marked to validate method input parameters
 @RequestMapping("/api/v1/beer")
 @RestController
+@RequiredArgsConstructor
 public class BeerController {
 
     private final BeerService beerService;
 
-    public BeerController(BeerService beerService) {
-        this.beerService = beerService;
-    }
+//    public BeerController(BeerService beerService) { //constructor taken care by lombok
+//        this.beerService = beerService;
+//    }
 
     //if you validation for controller method input parameters you need annotate class with @Validated annotation
     @GetMapping({"/{beerId}"})

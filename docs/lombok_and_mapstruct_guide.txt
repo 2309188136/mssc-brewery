@@ -1,0 +1,23 @@
+val -local variables declared final
+var -mutable local variables
+@NonNull -Null check, will throw NPE if parameter is null
+@Cleanup will call close() on resource in finally block
+@EqualsAndHashCode - By default will use all non-static, non-tranisent properties
+@Data Combines -@Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArgsConstructor
+
+@Value - The immutable variant of @Data. All fields are made private and final by default.
+@NonNull - Set on parameter of method or constructor and a NullPointerException will be thrown if parameter is null
+
+@SneakyThrows - Throw checked exceptions without declaring in calling method's throw clause
+@Synchronized - A safer implementation of Java's synchronized
+@Getter(lazy=true) - for expensive getters. will calcuate value first time and cache. Additional gets will read from cache
+@Log - Creates a Java util logger - java util loggers are awful
+@Slf4j - Creates a SLF4J logger (recommended generic logging facade)
+
+
+https://mapstruct.org/
+
+RequiredArgsConstructor
+https://stackoverflow.com/questions/23761242/java-lombok-omitting-one-field-in-allargsconstructor\
+https://stackoverflow.com/questions/37671467/lombok-requiredargsconstructor-not-working
+https://www.baeldung.com/spring-injection-lombok

@@ -6,6 +6,7 @@ import guru.springframework.msscbrewery.web.model.BeerDto;
 
 
 import guru.springframework.msscbrewery.web.model.BeerStyleEnum;
+import lombok.val;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -66,7 +67,7 @@ public class BeerControllerTest {
     @Test
     public void handlePost() throws Exception {
         //given
-        BeerDto beerDto = validBeer;
+        val beerDto = validBeer;
         beerDto.setId(null);
         BeerDto savedDto = BeerDto.builder().id(UUID.randomUUID()).beerName("New Beer").build();
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
