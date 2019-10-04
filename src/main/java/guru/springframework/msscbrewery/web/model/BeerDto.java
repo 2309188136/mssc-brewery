@@ -28,7 +28,7 @@ public class BeerDto {
     private String beerName;
 
     @Null
-    private OffsetDateTime createDate; //based on UTC date
+    private OffsetDateTime createdDate; //based on UTC date
     @Null
     private OffsetDateTime lastModifiedDate;
     @NotNull
