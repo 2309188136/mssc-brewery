@@ -9,6 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @JsonTest
 @ActiveProfiles("snake")
+//@ActiveProfiles("kebab")
 public class BeerDtoSnakeTest extends BaseTest {
     @Autowired
     ObjectMapper objectMapper;

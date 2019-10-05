@@ -14,14 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @JsonTest
 class BeerDtoTest extends BaseTest{
 
-    @Autowired
-    ObjectMapper objectMapper;
     @BeforeEach
     void setUp() {
     }
 
     @Test
     void testSerializedDto() throws JsonProcessingException {
+        System.out.println("Test serizialize DTO");
         BeerDto beerDto = super.getDto();
         String jsonString = objectMapper.writeValueAsString(beerDto);
         System.out.println(jsonString);
@@ -29,7 +28,8 @@ class BeerDtoTest extends BaseTest{
 
     @Test
     void testDeserializeJsonToDto() throws IOException {
-        String strJosn="{\"id\":\"7770000d-0953-4430-aaf0-1456e26a354d\",\"version\":null,\"beerName\":\"BeerName\",\"createdDate\":\"2019-10-03T22:22:42.3104719-05:00\",\"lastModifiedDate\":\"2019-10-03T22:22:42.3114995-05:00\",\"beerStyleEnum\":\"IPA\",\"upc\":123123123123,\"price\":12.99,\"quantityAtHand\":null}";
+        System.out.println("Test deserizialize DTO");
+        String strJosn="{\"id\":\"7770000d-0953-4430-aaf0-1456e26a354d\",\"version\":null,\"beerName\":\"BeerName\",\"createdDate\":\"2019-10-04T19:17:54\",\"beerStyleEnum\":\"IPA\", \"lastModifiedDate\": \"2019-10-03T22:22:42.3114995-05:00\",\"upc\":123123123123,\"price\":12.99,\"quantityAtHand\":null}";
         BeerDto dto = objectMapper.readValue(strJosn, BeerDto.class);
         System.out.println(dto);
     }
