@@ -1,13 +1,13 @@
 package guru.springframework.msscbrewery.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import guru.springframework.msscbrewery.bootstrap.BeerLoader;
 import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
 
 
 import guru.springframework.msscbrewery.web.model.BeerStyleEnum;
 import lombok.val;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,23 +45,23 @@ public class BeerControllerTest {
     ObjectMapper objectMapper; //inject springboot configuration preconfigured mapper
 
     BeerDto validBeer;
-
+    private UUID beerId =UUID.randomUUID();
     //@Before
     @BeforeEach
     public void setUp() throws Exception {
-        validBeer = BeerDto.builder().id(UUID.randomUUID()).beerName("Beer1")
-              .beerStyleEnum(BeerStyleEnum.PALE_ALE).upc(123456789012L).price(new BigDecimal(5.04)).build();
+        //.upc(123456789012L)
+        validBeer = getValidBeerDto();
     }
 
     @Test
     public void getBeer() throws Exception {
         given(beerService.getBeerById(any(UUID.class))).willReturn(validBeer);
 
-        mockMvc.perform(get("/api/v1/beer/" + validBeer.getId().toString()).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/beer/" + beerId).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id", is(validBeer.getId().toString())))
-                .andExpect(jsonPath("$.beerName", is("Beer1")));
+                //.andExpect(jsonPath("$.id", is(validBeer.getId().toString())))
+                .andExpect(jsonPath("$.beerName", is("My Beer")));
     }
 
     @Test
@@ -97,4 +97,12 @@ public class BeerControllerTest {
         then(beerService).should().updateBeer(any(), any());
     }
 
+    BeerDto getValidBeerDto(){
+        return BeerDto.builder()
+                .beerName("My Beer")
+                .beerStyle(BeerStyleEnum.ALE)
+                .price(new BigDecimal("2.99"))
+                .upc(BeerLoader.BEER_1_UPC)
+                .build();
+    }
 }

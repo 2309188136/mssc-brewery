@@ -40,10 +40,10 @@ public class BeerDto {
     @Null
     private OffsetDateTime lastModifiedDate;
     @NotNull
-    private BeerStyleEnum beerStyleEnum;
-    @Positive
+    private BeerStyleEnum beerStyle;
+    //@Positive
     @NotNull
-    private Long upc; //universal product code
+    private String upc; //universal product code
 
     @Positive
     @NotNull
