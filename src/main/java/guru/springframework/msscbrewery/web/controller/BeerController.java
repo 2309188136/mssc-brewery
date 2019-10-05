@@ -3,18 +3,12 @@ package guru.springframework.msscbrewery.web.controller;
 import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -26,11 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BeerController {
 
-    private final BeerService beerService;
-
-//    public BeerController(BeerService beerService) { //constructor taken care by lombok
-//        this.beerService = beerService;
-//    }
+    private final BeerService beerService; //@requiredArgsConstructor automatically wire in the dependency marked by final modifier thus no need for constructor
 
     //if you validation for controller method input parameters you need annotate class with @Validated annotation
     @GetMapping({"/{beerId}"})
@@ -40,18 +30,12 @@ public class BeerController {
 
     @PostMapping //POST - create new beer
     public ResponseEntity handlePost(@Valid @NotNull @RequestBody BeerDto beerDto){
-        BeerDto saveDto =beerService.saveNewBeer(beerDto);
-        //specify header and add location entry
-        HttpHeaders headers = new HttpHeaders();
-        //todo add hostname to url
-        headers.add("Location", "/api/v1/beer/" +saveDto.getId().toString());
-        return  new ResponseEntity(headers, HttpStatus.CREATED);
+        return  new ResponseEntity<>(beerService.saveNewBeer(beerDto), HttpStatus.CREATED);
     }
 
     @PutMapping(value = {"/{beerId}"})
     public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto){
-        beerService.updateBeer(beerId, beerDto);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(beerService.updateBeer(beerId,beerDto),HttpStatus.OK);
     }
 
     @DeleteMapping(value = {"/{beerId}"})

@@ -92,7 +92,7 @@ public class BeerControllerTest {
         mockMvc.perform(put("/api/v1/beer/" + UUID.randomUUID())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isOk());
 
         then(beerService).should().updateBeer(any(), any());
     }
