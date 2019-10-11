@@ -42,7 +42,7 @@ public class Beer {
     private String beerName;
 
     @Enumerated(EnumType.STRING)
-    private BeerStyleEnum beerStyleEnum;
+    private BeerStyleEnum beerStyle;
 //    private String beerStyle;
 
 

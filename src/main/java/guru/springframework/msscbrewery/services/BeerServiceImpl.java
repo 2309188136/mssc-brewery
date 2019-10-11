@@ -24,7 +24,7 @@ public class BeerServiceImpl implements BeerService {
     public BeerDto updateBeer(UUID beerId, BeerDto beerDto) {
         Beer beer = beerRepository.findById(beerId).orElseThrow(NotFoundException::new);
         beer.setBeerName(beerDto.getBeerName());
-        beer.setBeerStyleEnum(beerDto.getBeerStyle());
+        beer.setBeerStyle(beerDto.getBeerStyle());
         beer.setPrice(beerDto.getPrice());
         beer.setUpc(beerDto.getUpc());
         return  beerMapper.beerToBeerDto(beerRepository.save(beer));
@@ -44,5 +44,13 @@ public class BeerServiceImpl implements BeerService {
     public void deleteById(UUID beerId) {
         log.debug("Deleting a beer...");
     }
+
+    @Override
+    public BeerDto findBeerByUpc(String upc) {
+        return null;
+//        return beerMapper.beerToBeerDto(beerRepository.findByUpc(upc));
+    }
+
+
 
 }

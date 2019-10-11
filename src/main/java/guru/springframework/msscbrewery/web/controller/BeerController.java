@@ -44,4 +44,9 @@ public class BeerController {
         beerService.deleteById(beerId);
     }
 
+    @GetMapping(path = {"beerUpc/{upc}"}, produces = { "application/json" })
+    public ResponseEntity<BeerDto>  getBeerByUpc(@PathVariable("upc") String upc){
+        return new ResponseEntity<>(beerService.findBeerByUpc(upc), HttpStatus.OK);
+    }
+
 }

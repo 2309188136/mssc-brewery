@@ -12,4 +12,5 @@ public interface BeerService {
     BeerDto updateBeer(UUID beerId, BeerDto beerDto);
 
     void deleteById(UUID beerId);
+    BeerDto findBeerByUpc(String upc);
 }

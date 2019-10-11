@@ -1,0 +1,6 @@
+---local services port config
+
+service                    port
+Brewery Beer Service       8080
+Brewery Beer Order Service 8081
+Brewery Beer Inventory     8082

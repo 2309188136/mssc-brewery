@@ -4,12 +4,11 @@ import guru.springframework.msscbrewery.domain.Beer;
 import guru.springframework.msscbrewery.repositories.BeerRepository;
 import guru.springframework.msscbrewery.web.model.BeerStyleEnum;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 //class marked by CommandLineRunner runs when spring context starts
-@Component
+//@Component //replaced with embedded data sql bootstrap
 public class BeerLoader implements CommandLineRunner {
 
     public static final String BEER_1_UPC = "0631234200036";
@@ -30,12 +29,12 @@ public class BeerLoader implements CommandLineRunner {
 
         if(beerRepository.count()>0) return;
 
-        beerRepository.save(Beer.builder().beerName("Mango Bobs").beerStyleEnum(BeerStyleEnum.IPA)
+        beerRepository.save(Beer.builder().beerName("Mango Bobs").beerStyle(BeerStyleEnum.IPA)
                     .quantityToBrew(200).upc(BEER_1_UPC).price(new BigDecimal("12.95")).build());
-        beerRepository.save(Beer.builder().beerName("Galaxy Cat").beerStyleEnum(BeerStyleEnum.PALE_ALE)
+        beerRepository.save(Beer.builder().beerName("Galaxy Cat").beerStyle(BeerStyleEnum.PALE_ALE)
                     .quantityToBrew(200).upc(BEER_2_UPC).price(new BigDecimal("11.95")).build());
 
-        beerRepository.save(Beer.builder().beerName("Corona").beerStyleEnum(BeerStyleEnum.WHEAT)
+        beerRepository.save(Beer.builder().beerName("Corona").beerStyle(BeerStyleEnum.WHEAT)
                 .quantityToBrew(200).upc(BEER_3_UPC).price(new BigDecimal("9.95")).build());
     }
 }
